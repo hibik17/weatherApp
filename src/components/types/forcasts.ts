@@ -1,7 +1,7 @@
-export type forecastType = {
-  date: string;
-  dateLabel: string;
-  telop: string;
+export type forcastsType = {
+  date: "2021-03-03";
+  dateLabel: "今日";
+  telop: "晴れ";
   detail: {
     weather: string;
     wind: string;
@@ -9,12 +9,12 @@ export type forecastType = {
   };
   temperature: {
     min: {
-      celsius?: null;
-      fahrenheit?: null;
+      celsius: number | null;
+      fahrenheit: number | null;
     };
     max: {
-      celsius: number;
-      fahrenheit: number;
+      celsius: number | null;
+      fahrenheit: number | null;
     };
   };
   chanceOfRain: {

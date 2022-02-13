@@ -1,11 +1,16 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import axios from "axios";
 import { useCallback, useState } from "react";
+import { descriptionType } from "../types/descriptionType";
+import { forcastsType } from "../types/forcasts";
 import { axiosType } from "../types/axiosType";
 
 export const GetData = () => {
-  // weatherのデータを格納しておくstate
-  const [data, setData] = useState<axiosType>();
+  // weather_descriptionのデータを格納しておくstate
+  const [description, setDescription] = useState<descriptionType>();
+
+  // weather_forcastsのデータを格納しておくstate
+  const [forcasts, setForcasts] = useState<Array<forcastsType>>([]);
 
   const weatherData = useCallback(() => {
     axios
@@ -14,9 +19,10 @@ export const GetData = () => {
       )
       .then((res) => {
         console.log(res.data);
-        setData(res.data);
+        setDescription(res.data.description);
+        setForcasts(res.data.forecasts);
       });
   }, []);
 
-  return { data, weatherData };
+  return { description, forcasts, weatherData };
 };
