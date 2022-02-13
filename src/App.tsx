@@ -4,18 +4,24 @@ import { GetData } from "./components/hooks/GetData";
 
 function App() {
   // axiosのデータを取得するhooksの展開
-  const { description, forcasts, weatherData } = GetData();
+  const { description, forcasts, weatherData, loading } = GetData();
 
   useEffect(() => {
     weatherData();
   }, []);
 
-  console.log(description?.bodyText);
-  console.log(forcasts[0]?.date);
-
   return (
     <div className="App">
-      <p>{description?.bodyText}</p>
+      {loading ? (
+        <>
+          <p>{description?.bodyText}</p>
+          <p>{forcasts[0]?.date}</p>
+        </>
+      ) : (
+        <>
+          <p>loading...</p>
+        </>
+      )}
     </div>
   );
 }

@@ -12,7 +12,11 @@ export const GetData = () => {
   // weather_forcastsのデータを格納しておくstate
   const [forcasts, setForcasts] = useState<Array<forcastsType>>([]);
 
+  // loadingを管理するstate
+  const [loading, setLoading] = useState<boolean>(false);
+
   const weatherData = useCallback(() => {
+    setLoading(!loading);
     axios
       .get<axiosType>(
         "https://weather.tsukumijima.net/api/forecast?city=130020"
@@ -21,8 +25,13 @@ export const GetData = () => {
         console.log(res.data);
         setDescription(res.data.description);
         setForcasts(res.data.forecasts);
+      })
+      .catch((err) => alert(`${err.status}のエラーが出ています`))
+      .finally(() => {
+        console.log("天気のデータの取得が完了");
+        setLoading(!loading);
       });
   }, []);
 
-  return { description, forcasts, weatherData };
+  return { description, forcasts, weatherData, loading };
 };
