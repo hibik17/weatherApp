@@ -3,4 +3,4 @@
 2. npm start
 
 ## figma
-- (click)[https://www.figma.com/file/s6OYhSFt47lJOYhVjDawpK/Untitled?node-id=0%3A1]
+- [click](https://www.figma.com/file/s6OYhSFt47lJOYhVjDawpK/Untitled?node-id=0%3A1)
